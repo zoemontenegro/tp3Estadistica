@@ -1,0 +1,55 @@
+
+body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;;
+    color: grey;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    background-color: #1e2859;
+    padding: 10px;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    flex-grow: 1;
+}
+
+
+/*DASHBOARD CSS*/
+
+.dashboard-container {
+    width: 100%;
+}
+
+.row {
+    display: flex; 
+    margin-bottom: 20px; 
+}
+
+.panel {
+    width: 49%; 
+    margin-left: 1%;
+    margin-right: 1% !important; 
+    border: 1px solid #ddd;
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.small-panel {
+    width: 30%; 
+}
+
+
+.large-panel {
+    width: 66%; 
+    margin-right: 0;
+}
+
+.full-width {
+
+    width: 98%; 
+}

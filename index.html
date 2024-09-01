@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+      </style>
+    <title>Dashboard</title>
+    <script src="charts.js"></script>
+    <link rel="shortcut icon" href="logoIdra.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<header>
+    <div class="navbar">
+        <img src="logoIdra.png" alt="logo idra">
+        <h1>DASHBOARD</h1>
+    </div>
+</header>
+
+<body>
+
+    <div class="dashboard-wrapper">
+        <div class="row">
+            <div id="p1" class="panel small-panel">
+                <h2>Distribución de Alumnos por Nivel</h2>
+                <div id="piechart"></div>
+            </div>
+            <div id="p4" class="panel large-panel">
+                <h2>Evolución Anual de Nivel de Asistencia por Mes</h2>
+                <div id="chart2"></div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div id="p3" class="panel">
+                <h2>Comparación de Niveles de Asistencia por Curso</h2>
+                <div id="columnchart"></div>
+            </div>
+            <div id="p2" class="panel">
+                <h2>Nivel de Asistencia General</h2>
+                <div id="barchart"></div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div id="p5" class=" panel small-panel">
+                <h2>Nivel General de Calificaciones (Aprobados/Desaprobados)</h2>
+                <div id="donutchart"></div>
+            </div>
+            <div id="p6" class="panel large-panel">
+                <h2>Comparativa de Niveles de Calificaciones por Curso</h2>
+                <div id="columnchart2"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div id="p7" class="panel">
+                <h2>Estado de Situación de Envío de Comunicados</h2>
+                <div id="donutchart2"></div>
+            </div>
+            <div class="panel">
+                <h2>Dashboard desarrollada por:</h2>
+                <h2>Rocio Villanueva</h2>
+                <h2>Zoe Montenegro</h2>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        API1()
+        API2()
+        API3()
+        API4()
+        API5()
+        API6()
+        API7()
+    </script>
+</body>
+
+</html>
