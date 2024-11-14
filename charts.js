@@ -1,9 +1,9 @@
 
-const url1 = 'https://apidemo.geoeducacion.com.ar/api/testing/estudiantes/1';
-const url2 = 'https://apidemo.geoeducacion.com.ar/api/testing/historial_asistencia/1';
-const url3 = 'https://apidemo.geoeducacion.com.ar/api/testing/comunicados/1';
-const url4 = 'https://apidemo.geoeducacion.com.ar/api/testing/calificaciones/1';
-const url5 = 'https://apidemo.geoeducacion.com.ar/api/testing/asistencia/1';
+const url1 = 'https://apidemo.geoeducacion.com.ar/api/testing/estudiantes/1'
+const url2 = 'https://apidemo.geoeducacion.com.ar/api/testing/historial_asistencia/1'
+const url3 = 'https://apidemo.geoeducacion.com.ar/api/testing/comunicados/1'
+const url4 = 'https://apidemo.geoeducacion.com.ar/api/testing/calificaciones/1'
+const url5 = 'https://apidemo.geoeducacion.com.ar/api/testing/asistencia/1'
 
 
 
@@ -58,7 +58,7 @@ function mostrarGrafico1(conteoNivel) {
             title: 'Distribución de Alumnos por Nivel',
             is3D: false,
             colors: ['#6a0dad', '#8a2be2', '#9370db', '#7b68ee', '#6a5acd', '#483d8b'] 
-        };
+        }
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'))
         chart.draw(chartData, options)
@@ -76,39 +76,39 @@ function API2() {
             if (!respuesta.ok) {
                 throw new Error('Hubo un error de red');
             }
-            return respuesta.json();
+            return respuesta.json()
         })
         .then(datos => {
-            procesarDatos2(datos.data);
+            procesarDatos2(datos.data)
         })
-        .catch(error => console.error('Error al hacer la solicitud', error));
+        .catch(error => console.error('Error al hacer la solicitud', error))
 }
 
 function procesarDatos2(asistencia) {
     const conteo = asistencia.reduce((acc, registro) => {
         if (!acc[registro.nivel]) {
-            acc[registro.nivel] = { presentes: 0, ausentes: 0 };
+            acc[registro.nivel] = { presentes: 0, ausentes: 0 }
         }
-        acc[registro.nivel].presentes += registro.presentes;
-        acc[registro.nivel].ausentes += registro.ausentes;
-        return acc;
+        acc[registro.nivel].presentes += registro.presentes
+        acc[registro.nivel].ausentes += registro.ausentes
+        return acc
     }, {});
 
-    mostrarGrafico2(conteo);
+    mostrarGrafico2(conteo)
 }
 
 function mostrarGrafico2(conteo) {
-    const data = [['Nivel', 'Presentes', 'Ausentes']];
+    const data = [['Nivel', 'Presentes', 'Ausentes']]
 
     for (let nivel in conteo) {
-        data.push([nivel, conteo[nivel].presentes, conteo[nivel].ausentes]);
+        data.push([nivel, conteo[nivel].presentes, conteo[nivel].ausentes])
     }
 
-    google.charts.load('current', { 'packages': ['corechart'] });
-    google.charts.setOnLoadCallback(drawChart);
+    google.charts.load('current', { 'packages': ['corechart'] })
+    google.charts.setOnLoadCallback(drawChart)
 
     function drawChart() {
-        var chartData = google.visualization.arrayToDataTable(data);
+        var chartData = google.visualization.arrayToDataTable(data)
 
         var opciones = {
             title: 'Asistencia',
@@ -117,9 +117,9 @@ function mostrarGrafico2(conteo) {
             bars: 'vertical',
             isStacked: true,
             colors: ['#6a0dad', '#8a2be2']
-        };
+        }
 
-        var grafico = new google.visualization.BarChart(document.getElementById('barchart'));
+        var grafico = new google.visualization.BarChart(document.getElementById('barchart'))
         grafico.draw(chartData, opciones);
     }
 }
@@ -145,7 +145,7 @@ function API3() {
                 resolver(cursos)
             })
             .catch(error => {
-                rechazar(console.error('Error al hacer la solicitud', error));
+                rechazar(console.error('Error al hacer la solicitud', error))
             })
     })
 }
@@ -187,7 +187,7 @@ function mostrarGrafico3(asistenciaPorCurso) {
             },
             colors: ['#6a0dad']
              
-        };
+        }
 
         var chart = new google.visualization.ColumnChart(document.getElementById('columnchart'))
         chart.draw(chartData, options)
@@ -205,7 +205,7 @@ function API4() {
         fetch(url2)
             .then(respuesta => {
                 if (!respuesta.ok) {
-                    throw new Error('Hubo un error de red');
+                    throw new Error('Hubo un error de red')
                 }
                 return respuesta.json()
             })
@@ -216,31 +216,31 @@ function API4() {
             })
             .catch(error => {
                 rechazar(console.error('Error al hacer la solicitud', error))
-            });
-    });
+            })
+    })
 }
 function procesarDatos4(asistencias) {
     const nombresMeses = asistencias.map(item => item.mes);
-    const asistencia = asistencias.map(item => item.asistencia * 100);
+    const asistencia = asistencias.map(item => item.asistencia * 100)
 
-    console.log('Nombres de meses:', nombresMeses);
-    console.log('Asistencias:', asistencia);
+    console.log('Nombres de meses:', nombresMeses)
+    console.log('Asistencias:', asistencia)
 
-    mostrarGrafico4(nombresMeses, asistencia);
+    mostrarGrafico4(nombresMeses, asistencia)
 }
 //nivelasistencia GRAFICO
 function mostrarGrafico4(nombresMeses, asistencia) {
-    const data = [['Mes', 'Asistencia']];
+    const data = [['Mes', 'Asistencia']]
 
     for (let i = 0; i < nombresMeses.length; i++) {
-        data.push([nombresMeses[i], asistencia[i]]);
+        data.push([nombresMeses[i], asistencia[i]])
     }
 
-    google.charts.load('current', { packages: ['corechart', 'line'] });
-    google.charts.setOnLoadCallback(drawBackgroundColor);
+    google.charts.load('current', { packages: ['corechart', 'line'] })
+    google.charts.setOnLoadCallback(drawBackgroundColor)
 
     function drawBackgroundColor() {
-        var chartData = google.visualization.arrayToDataTable(data);
+        var chartData = google.visualization.arrayToDataTable(data)
 
         var options = {
             hAxis: {
@@ -250,10 +250,10 @@ function mostrarGrafico4(nombresMeses, asistencia) {
                 title: 'Nivel de asistencia (%)'
             },
             colors: ['#6a0dad']
-        };
+        }
 
-        var chart = new google.visualization.LineChart(document.getElementById('chart2'));
-        chart.draw(chartData, options);
+        var chart = new google.visualization.LineChart(document.getElementById('chart2'))
+        chart.draw(chartData, options)
     }
 }
 
@@ -267,30 +267,30 @@ function API5() {
     return fetch(url4)
         .then(respuesta => {
             if (!respuesta.ok) {
-                throw new Error('Hubo un error de red');
+                throw new Error('Hubo un error de red')
             }
             return respuesta.json();
         })
         .then(datos => {
-            procesarCalificaciones(datos.data);
+            procesarCalificaciones(datos.data)
         })
-        .catch(error => console.error('Error al hacer la solicitud', error));
+        .catch(error => console.error('Error al hacer la solicitud', error))
 }
 
 function procesarCalificaciones(calificaciones) {
     const conteo = calificaciones.reduce((acc, registro) => {
         if (!acc['Aprobados']) {
-            acc['Aprobados'] = 0;
+            acc['Aprobados'] = 0
         }
         if (!acc['Desaprobados']) {
-            acc['Desaprobados'] = 0;
+            acc['Desaprobados'] = 0
         }
-        acc['Aprobados'] += registro.aprobados;
-        acc['Desaprobados'] += registro.desaprobados;
-        return acc;
-    });
+        acc['Aprobados'] += registro.aprobados
+        acc['Desaprobados'] += registro.desaprobados
+        return acc
+    })
 
-    mostrarGrafico5(conteo);
+    mostrarGrafico5(conteo)
 }
 
 function mostrarGrafico5(conteo) {
@@ -300,19 +300,19 @@ function mostrarGrafico5(conteo) {
         ['Desaprobados', conteo['Desaprobados']]
     ];
 
-    google.charts.load('current', { 'packages': ['corechart'] });
-    google.charts.setOnLoadCallback(drawChart);
+    google.charts.load('current', { 'packages': ['corechart'] })
+    google.charts.setOnLoadCallback(drawChart)
 
     function drawChart() {
-        const chartData = google.visualization.arrayToDataTable(data);
+        const chartData = google.visualization.arrayToDataTable(data)
 
         const opciones = {
             title: 'Distribución General de Calificaciones',
             pieHole: 0.4,
             colors: ['#6a0dad', '#8a2be2']
-        };
+        }
 
-        const grafico = new google.visualization.PieChart(document.getElementById('donutchart'));
+        const grafico = new google.visualization.PieChart(document.getElementById('donutchart'))
         grafico.draw(chartData, opciones);
     }
 }
@@ -329,32 +329,32 @@ function API6() {
     return fetch(url4)
         .then(respuesta => {
             if (!respuesta.ok) {
-                throw new Error('Hubo un error de red');
+                throw new Error('Hubo un error de red')
             }
-            return respuesta.json();
+            return respuesta.json()
         })
         .then(datos => {
-            procesarDatos6(datos.data);
+            procesarDatos6(datos.data)
         })
-        .catch(error => console.error('Error al hacer la solicitud', error));
+        .catch(error => console.error('Error al hacer la solicitud', error))
 }
 
 function procesarDatos6(calificaciones) {
-    const data = [['Curso', 'Aprobados', 'Desaprobados']];
+    const data = [['Curso', 'Aprobados', 'Desaprobados']]
 
     calificaciones.forEach(registro => {
-        data.push([registro.curso, registro.aprobados, registro.desaprobados]);
-    });
+        data.push([registro.curso, registro.aprobados, registro.desaprobados])
+    })
 
-    mostrarGrafico6(data);
+    mostrarGrafico6(data)
 }
 
 function mostrarGrafico6(data) {
-    google.charts.load('current', { 'packages': ['corechart'] });
-    google.charts.setOnLoadCallback(drawChart);
+    google.charts.load('current', { 'packages': ['corechart'] })
+    google.charts.setOnLoadCallback(drawChart)
 
     function drawChart() {
-        const chartData = google.visualization.arrayToDataTable(data);
+        const chartData = google.visualization.arrayToDataTable(data)
 
         const opciones = {
             title: 'Comparativa de Calificaciones por Curso',
@@ -362,10 +362,10 @@ function mostrarGrafico6(data) {
             vAxis: { title: 'Cantidad' },
             bars: 'vertical',
             colors: ['#6a0dad', '#8a2be2']
-        };
+        }
 
-        const grafico = new google.visualization.ColumnChart(document.getElementById('columnchart2'));
-        grafico.draw(chartData, opciones);
+        const grafico = new google.visualization.ColumnChart(document.getElementById('columnchart2'))
+        grafico.draw(chartData, opciones)
     }
 }
 
